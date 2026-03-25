@@ -20,5 +20,4 @@ blocks:
         - name: Setup
           commands:
             - checkout
-            - sem-version python 3.12
             - pip install pytest requests flask coverage locust
