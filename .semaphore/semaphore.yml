@@ -1,0 +1,24 @@
+version: v1.0
+name: "\U0001F3AF Simple CI Pipeline"
+agent:
+  machine:
+    type: a2-standard-4
+    os_image: macos-xcode26
+fail_fast:
+  stop:
+    when: branch != 'main'
+auto_cancel:
+  running:
+    when: branch != 'main'
+  queued:
+    when: branch = 'main'
+blocks:
+  - name: Install Dependencies
+    dependencies: []
+    task:
+      jobs:
+        - name: Setup
+          commands:
+            - checkout
+            - sem-version python 3.12
+            - pip install pytest requests flask coverage locust
