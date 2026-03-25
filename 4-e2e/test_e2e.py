@@ -39,6 +39,31 @@ class TestEndToEnd(unittest.TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertEqual(response.json()["status"], "ok")
 
+    def test_history_endpoint(self):
+        # First, perform some calculations
+        requests.post(f"{BASE_URL}/add", json={"a": 2, "b": 3})
+        requests.post(f"{BASE_URL}/subtract", json={"a": 10, "b": 4})
+        requests.post(f"{BASE_URL}/multiply", json={"a": 3, "b": 5})
+        
+        # Now, check the history endpoint
+        response = requests.get(f"{BASE_URL}/history")
+        self.assertEqual(response.status_code, 200)
+        
+        history = response.json()
+        
+        # History should be a list of calculation results
+        self.assertIsInstance(history, list)
+        
+        # There should be at least 3 entries
+        self.assertGreaterEqual(len(history), 3)
+        
+        # Each entry should have keys: "operation", "a", "b", "result"
+        for entry in history:
+            self.assertIn("operation", entry)
+            self.assertIn("a", entry)
+            self.assertIn("b", entry)
+            self.assertIn("result", entry)
+
 
 if __name__ == "__main__":
     unittest.main()

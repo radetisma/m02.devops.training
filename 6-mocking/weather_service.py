@@ -2,16 +2,29 @@ import api_client
 
 
 def get_weather(city):
-    raise NotImplementedError("Implement get_weather using TDD")
+    try:
+        data = api_client.fetch_weather_data(city)
+        return data
+    except TimeoutError:
+        return {"error": "timeout"}
+    except Exception:
+        return {"error": "api failure"}
 
 
 def get_forecast(city, days=3):
-    raise NotImplementedError("Implement get_forecast using TDD")
+    return api_client.fetch_forecast(city, days)
 
 
 def is_good_weather(conditions):
-    raise NotImplementedError("Implement is_good_weather using TDD")
+    return conditions in ["sunny", "partly cloudy"]
 
 
 def get_greeting_based_on_time():
-    raise NotImplementedError("Implement get_greeting_based_on_time using TDD")
+    hour = api_client.get_current_hour()
+
+    if 5 <= hour < 12:
+        return "Good morning"
+    elif 12 <= hour < 18:
+        return "Good afternoon"
+    else:
+        return "Good evening"

@@ -13,7 +13,7 @@ source venv/bin/activate
 
 1. Install the dependencies using `pip install -r requirements.txt`
 2. Run `pytest` and see that some tests are failing. This is ok.
-3. Run `pytest -junitxml=reports.xml` to create an XML file with the reports
+3. Run `pytest --junitxml=reports.xml` to create an XML file with the reports
 
 ### Test filtering and categorization
 

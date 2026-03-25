@@ -4,4 +4,7 @@ dist/
 build/
 venv/
 *.egg-info/
+*.xml
+.coverage
+*.db
 
