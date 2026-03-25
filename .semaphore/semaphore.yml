@@ -68,5 +68,9 @@ blocks:
             - 'cd 4-e2e '
             - pip install -r requirements.txt
             - python app.py &
-            - sleep 10
+            - '# wait until app is ready'
+            - 'until curl -s http://127.0.0.1:5000/health; do'
+            - '  echo "Waiting for Flask app..."'
+            - '  sleep 1'
+            - done
             - python -m pytest test_e2e.py -v
