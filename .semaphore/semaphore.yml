@@ -66,6 +66,7 @@ blocks:
         - name: Run Tests
           commands:
             - 'cd 4-e2e '
+            - pip install -r requirements.txt
             - 'nohup python app.py & '
             - sleep 5
             - python -m pytest test_e2e.py -v
