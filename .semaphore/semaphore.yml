@@ -36,9 +36,12 @@ blocks:
         - name: Run Tests
           commands:
             - cache restore
-            - 'cd 1-tdd && python -m pytest test_factorial.py -v '
+            - 'cd 1-tdd '
+            - 'python -m pytest test_factorial.py -v '
+            - python -m pytest test_fibonacci.py -v
             - cd ..
-            - cd 2-unit-testing && python -m pytest test_math_sum.py -v
+            - 'cd 2-unit-testing '
+            - python -m pytest test_math_sum.py -v
   - name: Integration Tests
     dependencies:
       - Unit Tests
@@ -47,8 +50,11 @@ blocks:
         - name: Run Tests
           commands:
             - cache restore
-            - 'cd 3-integration-testing && python -m pytest test_integration.py -v '
+            - 'cd 3-integration-testing '
+            - 'python -m pytest test_integration.py -v '
             - cd ..
-            - 'cd 6-mocking && python -m pytest test_weather_service.py -v '
+            - 'cd 6-mocking '
+            - 'python -m pytest test_weather_service.py -v '
             - cd ..
-            - cd 10-database-testing && python -m pytest test_database.py -v
+            - 'cd 10-database-testing '
+            - python -m pytest test_database.py -v
