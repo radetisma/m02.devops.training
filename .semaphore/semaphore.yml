@@ -48,5 +48,7 @@ blocks:
           commands:
             - cache restore
             - 'cd 3-integration-testing && python -m pytest test_integration.py -v '
+            - cd ..
             - 'cd 6-mocking && python -m pytest test_weather_service.py -v '
+            - cd ..
             - cd 10-database-testing && python -m pytest test_database.py -v
