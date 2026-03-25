@@ -21,3 +21,6 @@ blocks:
           commands:
             - checkout
             - pip install pytest requests flask coverage locust
+      prologue:
+        commands:
+          - sem-version python 3.12
