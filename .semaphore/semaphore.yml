@@ -16,6 +16,7 @@ fail_fast:
 global_job_config:
   prologue:
     commands:
+      - sem-version python 3.12
       - checkout
 blocks:
   - name: "\U0001F4E6 Setup Dependencies"
@@ -26,9 +27,6 @@ blocks:
           commands:
             - pip install pytest requests flask coverage locust
             - cache store
-      prologue:
-        commands:
-          - sem-version python 3.12
 after_pipeline:
   task:
     jobs:
