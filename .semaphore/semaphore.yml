@@ -58,3 +58,14 @@ blocks:
             - cd ..
             - 'cd 10-database-testing '
             - python -m pytest test_database.py -v
+  - name: E2E Tests
+    dependencies:
+      - Integration Tests
+    task:
+      jobs:
+        - name: Run Tests
+          commands:
+            - 'cd 4-e2e '
+            - 'nohup python app.py & '
+            - sleep 5
+            - python -m pytest test_e2e.py -v
