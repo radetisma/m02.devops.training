@@ -19,14 +19,22 @@ global_job_config:
       - checkout
       - mkdir -p .pip_cache
 blocks:
-  - name: Install Dependencies
+  - name: Setup
     dependencies: []
     task:
       jobs:
-        - name: Clone&Install
+        - name: Install Python Packages
           commands:
-            - echo "Checking out code..."
             - echo "Installing dependencies..."
-            - echo "Running test suite..."
-            - echo "Tests completed successfully!"
             - pip install pytest requests flask coverage locust flask-limiter
+            - cache store
+  - name: Unit Tests
+    dependencies:
+      - Setup
+    task:
+      jobs:
+        - name: Run Tests
+          commands:
+            - cache restore
+            - 'cd 1-tdd && python -m pytest test_factorial.py -v '
+            - cd 2-unit-testing && python -m pytest test_math_sum.py -v
