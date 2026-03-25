@@ -6,7 +6,7 @@ agent:
     os_image: ubuntu2004
   containers:
     - name: main
-      image: 'semaphoreci/ubuntu:20.04'
+      image: 'semaphoreci/ubuntu:24.04'
 auto_cancel:
   queued:
     when: 'true'
