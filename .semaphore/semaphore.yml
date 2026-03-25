@@ -16,9 +16,7 @@ fail_fast:
 global_job_config:
   prologue:
     commands:
-      - pyenv install 3.12
-      - pyenv global 3.12
-      - python --version
+      - sem-version python 3.9
       - checkout
 blocks:
   - name: "\U0001F4E6 Setup Dependencies"
