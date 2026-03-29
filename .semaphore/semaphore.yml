@@ -81,5 +81,6 @@ blocks:
         - name: Check coverage
           commands:
             - cd 7-test-coverage
+            - pip install coverage
             - 'coverage run -m pytest test_calculator.py -v '
             - coverage report -m
