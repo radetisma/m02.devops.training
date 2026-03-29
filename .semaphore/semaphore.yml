@@ -65,10 +65,11 @@ blocks:
       jobs:
         - name: Run Tests
           commands:
+            - cache restore
             - 'cd 4-e2e '
             - pip install -r requirements.txt
             - pip install flask_limiter
-            - python app.py &
+            - nohup python app.py &
             - '# wait until app is ready - running state'
             - 'until curl -s http://127.0.0.1:5000/health; do sleep 1; done'
             - python -m pytest test_e2e.py -v
