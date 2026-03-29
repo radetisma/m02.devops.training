@@ -73,3 +73,13 @@ blocks:
             - '# wait until app is ready - running state'
             - 'until curl -s http://127.0.0.1:5000/health; do sleep 1; done'
             - python -m pytest test_e2e.py -v
+  - name: Coverage
+    dependencies:
+      - Setup
+    task:
+      jobs:
+        - name: Check coverage
+          commands:
+            - cd 7-test-coverage
+            - 'coverage run -m pytest test_calculator.py -v '
+            - coverage report -m
